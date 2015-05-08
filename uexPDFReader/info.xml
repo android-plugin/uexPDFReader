@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<uexplugins>
+    <plugin
+        uexName="uexPDFReader" version="3.0.1" build="1">
+        <info>1:修复路径不存在时崩溃问题</info>
+		<build>0:PDF阅读器功能插件</build>
+    </plugin>
+</uexplugins>

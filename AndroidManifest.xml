@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.zywx.wbpalmstar.widgetone.uexpdfreader"
+    android:versionCode="1"
+    android:versionName="1.0" 
+	android:installLocation="internalOnly">
+	
+     <uses-feature
+        android:glEsVersion="0x00010001"
+        android:required="true" />
+
+    <application
+        android:name="org.zywx.wbpalmstar.widgetone.WidgetOneApplication"
+        android:allowClearUserData="false"
+        android:debuggable="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name" 
+        android:largeHeap="true">
+        <activity
+            android:name="org.zywx.wbpalmstar.engine.EBrowserActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/browser_main_theme"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+       
+		<service
+            android:name="org.zywx.wbpalmstar.platform.analytics.PushService"
+            android:enabled="true" />
+       <receiver android:name="org.zywx.wbpalmstar.platform.analytics.PushBroadCastReceiver">
+			<intent-filter>
+				<action android:name="android.intent.action.BOOT_COMPLETED" />
+			</intent-filter>
+		</receiver>
+		
+       
+       
+       <!-- pdf reader -->
+       
+       <activity android:name="org.zywx.wbpalmstar.plugin.uexpdf.TestActivity"></activity>
+       
+       
+       
+      <activity
+            android:name="org.ebookdroid.ui.viewer.ViewerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" 
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:mimeType="application/pdf" />
+                <data android:mimeType="image/djvu" />
+                <data android:mimeType="image/vnd.djvu" />
+                <data android:mimeType="image/x-djvu" />
+                <data android:mimeType="application/vnd.ms-xpsdocument" />
+                <data android:mimeType="application/oxps" />
+                <data android:mimeType="application/x-cbz" />
+                <data android:mimeType="application/x-cbr" />
+                <data android:mimeType="application/x-fb2" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:host="*" />
+                <data android:scheme="file" />
+                <data android:scheme="smb" />
+                <data android:scheme="content" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:mimeType="*/*" />
+                <data android:pathPattern=".*\\.pdf" />
+                <data android:pathPattern=".*\\.djvu" />
+                <data android:pathPattern=".*\\.djv" />
+                <data android:pathPattern=".*\\.xps" />
+                <data android:pathPattern=".*\\.oxps" />
+                <data android:pathPattern=".*\\.cbz" />
+                <data android:pathPattern=".*\\.cbr" />
+                <data android:pathPattern=".*\\.fb2" />
+                <data android:pathPattern=".*\\.fb2\\.zip" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.ebookdroid.ui.library.RecentActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.ebookdroid.ui.opds.OPDSActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/plugin_pdf_opds"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="org.ebookdroid.ui.settings.SettingsActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity android:name="org.zywx.wbpalmstar.widgetone.uex.nativetest.ui.settings.FragmentedSettingsActivity" />
+        <activity
+            android:name="org.ebookdroid.ui.settings.BookSettingsActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="org.ebookdroid.ui.library.BrowserActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="org.ebookdroid.ui.about.AboutActivity"
+            android:icon="@drawable/plugin_pdf_application_icon"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name="org.ebookdroid.ui.library.dialogs.FolderDlg"
+            android:icon="@drawable/plugin_pdf_application_icon"
+            android:theme="@android:style/Theme.Dialog" />
+        
+        
+        
+         <!-- pdf reader -->
+       <activity
+            android:name="com.radaee.reader.PDFReaderAct"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+    </application>
+
+    <uses-sdk android:minSdkVersion="5" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+		android:xlargeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" />
+
+</manifest>
