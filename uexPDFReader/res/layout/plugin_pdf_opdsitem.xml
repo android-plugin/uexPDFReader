@@ -30,7 +30,7 @@
         android:singleLine="true"
         android:textSize="15dip" />
 
-    <org.emdev.ui.widget.TextViewMultilineEllipse
+   <!--  <org.emdev.ui.widget.TextViewMultilineEllipse
         android:id="@+id/opdsDescription"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -39,6 +39,6 @@
         android:layout_below="@id/opdsItemText"
         android:layout_toRightOf="@id/opdsItemIcon"
         app:textSize="13dip"
-        app:maxLines="5"/>
+        app:maxLines="5"/> -->
 
 </RelativeLayout>
