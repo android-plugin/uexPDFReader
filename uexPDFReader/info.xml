@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <uexplugins>
     <plugin
-        uexName="uexPDFReader" version="3.0.2" build="2">
-        <info>2:修复打包冲突的问题</info>
+        uexName="uexPDFReader" version="3.0.3" build="3">
+        <info>3:修复打包冲突的问题</info>
+        <build>2:修复打包冲突的问题</build>
         <build>1:修复路径不存在时崩溃问题</build>
 		<build>0:PDF阅读器功能插件</build>
     </plugin>

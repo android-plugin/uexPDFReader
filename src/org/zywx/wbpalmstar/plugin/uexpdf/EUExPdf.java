@@ -9,23 +9,20 @@ import org.zywx.wbpalmstar.engine.universalex.EUExBase;
 import org.zywx.wbpalmstar.engine.universalex.EUExUtil;
 
 import android.app.Activity;
-import android.app.ActivityGroup;
+import android.app.ActivityManager;
 import android.app.Dialog;
-import android.app.LocalActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.view.View;
-import android.view.Window;
-import android.widget.RelativeLayout;
 
 public class EUExPdf extends EUExBase {
 
 	private static final String TAG = "EUExPdf";
 	public static Context context;
 	private boolean isOpen = false;
-	
+	public static ViewerActivity instance;
 
 	public EUExPdf(Context context, EBrowserView inParent) {
 		super(context, inParent);
@@ -55,20 +52,23 @@ public class EUExPdf extends EUExBase {
 	
 	public void close(String[] args)
 	{
-		LocalActivityManager mgr = ((ActivityGroup) mContext)
-				.getLocalActivityManager();
-		ViewerActivity viewerActivity = (ViewerActivity) mgr.getActivity(TAG);
-		if(viewerActivity != null){
-			View view = viewerActivity.getWindow().getDecorView();
-			removeViewFromCurrentWindow(view);
-			viewerActivity.finish();
-			viewerActivity = null;
-			view = null;
-		}
-	
+//		LocalActivityManager mgr = ((ActivityGroup) mContext)
+//				.getLocalActivityManager();
+//		ViewerActivity viewerActivity = (ViewerActivity) mgr.getActivity(TAG);
+//		if(viewerActivity != null){
+//			View view = viewerActivity.getWindow().getDecorView();
+//			removeViewFromCurrentWindow(view);
+//			viewerActivity.finish();
+//			viewerActivity = null;
+//			view = null;
+//		}
+        if (instance != null){
+            instance.finish();
+            instance = null;
+        }
 		
 		if(isOpen){
-			isOpen=!isOpen;
+			isOpen = false;
 		}
 		
 	}
@@ -131,6 +131,7 @@ public class EUExPdf extends EUExBase {
 					.fromFile(f));
 			intent.setClass(mContext, ViewerActivity.class);
 			startActivity(intent);
+            isOpen = true;
 			
 //			((ActivityGroup) mContext).runOnUiThread(new Runnable() {
 

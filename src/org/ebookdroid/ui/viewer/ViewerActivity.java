@@ -59,11 +59,11 @@ public class ViewerActivity extends
 
 	private TouchManagerView touchView;
 
-	private boolean menuClosedCalled;
 
 	private ManualCropView cropControls;
 
 	private EUExPdf pdfContext;
+    private boolean menuClosedCalled;
 	
 	private View currView;
 
@@ -156,6 +156,7 @@ public class ViewerActivity extends
 
 		setContentView(frameLayout);
 		ResUtils.getInstanct(EBookDroidApp.context);
+        EUExPdf.instance = this;
 	}
 
 	/**
