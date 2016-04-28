@@ -7,10 +7,10 @@
         android:id="@+id/tv_dialog_input_desc"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_margin="10dip"
+        android:layout_alignParentTop="true" 
+        android:layout_margin="10dip" 
         android:gravity="left|center_vertical"
-        android:textSize="20sp" />
+        android:textSize="20sp" /> 
 
     <EditText
         android:id="@+id/et_dialog_input_text"

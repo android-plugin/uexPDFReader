@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ViewAnimator 
+        android:id="@+id/switcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" >
+
+        <RelativeLayout
+            android:id="@+id/topBar0Main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/plugin_uexpdfreader_toolbar" >
+
+            <TextView
+                android:id="@+id/docNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/linkButton"
+                android:paddingLeft="16dp"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/sepsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/plugin_uexpdfreader_button"
+                android:contentDescription="Separations"
+                android:onClick="OnSepsButtonClick" />
+
+            <ImageButton
+                android:id="@+id/linkButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/reflowButton"
+                android:background="@drawable/plugin_uexpdfreader_button"
+                android:contentDescription="高亮并启用墨迹"
+                android:src="@drawable/plugin_uexpdfreader_ic_link" />
+
+            <ImageButton
+                android:id="@+id/reflowButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/outlineButton"
+                android:background="@drawable/plugin_uexpdfreader_button"
+                android:contentDescription="Toggle reflow mode"
+                android:src="@drawable/plugin_uexpdfreader_ic_reflow" />
+
+            <ImageButton
+                android:id="@+id/outlineButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/searchButton"
+                android:background="@drawable/plugin_uexpdfreader_button"
+                android:contentDescription="目录"
+                android:src="@drawable/plugin_uexpdfreader_ic_list" />
+
+            <ImageButton
+                android:id="@+id/searchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/moreButton"
+                android:background="@drawable/plugin_uexpdfreader_button"
+                android:contentDescription="搜索文档"
+                android:src="@drawable/plugin_uexpdfreader_ic_magnifying_glass" />
+
+            <ImageButton
+                android:id="@+id/moreButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/plugin_uexpdfreader_button"
+                android:contentDescription="更多"
+                android:onClick="OnMoreButtonClick"
+                android:src="@drawable/plugin_uexpdfreader_ic_more" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/topBar1Search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/plugin_uexpdfreader_toolbar" >
+
+            <ImageButton
+                android:id="@+id/cancelSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/plugin_uexpdfreader_button"
+                android:contentDescription="@string/cancel"
+                android:onClick="OnCancelSearchButtonClick"
+                android:src="@drawable/plugin_uexpdfreader_ic_cancel" />
+
+            <EditText
+                android:id="@+id/searchText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/searchBack"
+                android:layout_toRightOf="@+id/cancelSearch"
+                android:background="@drawable/plugin_uexpdfreader_search"
+                android:hint="@string/plugin_uexpdfreader_search"
+                android:inputType="text"
+                android:singleLine="true" />
+
+            <ImageButton
+                android:id="@+id/searchBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/searchForward"
+                android:background="@drawable/plugin_uexpdfreader_button"
+                android:contentDescription="向后搜索"
+                android:src="@drawable/plugin_uexpdfreader_ic_arrow_left" />
+
+            <ImageButton
+                android:id="@+id/searchForward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/plugin_uexpdfreader_button"
+                android:contentDescription="向前搜索"
+                android:src="@drawable/plugin_uexpdfreader_ic_arrow_right" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/topBar2Annot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/plugin_uexpdfreader_toolbar" >
+
+            <ImageButton
+                android:id="@+id/cancelAnnotButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/plugin_uexpdfreader_button"
+                android:contentDescription="@string/cancel"
+                android:onClick="OnCancelAnnotButtonClick"
+                android:src="@drawable/plugin_uexpdfreader_ic_cancel" />
+
+            <ImageButton
+                android:id="@+id/highlightButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/underlineButton"
+                android:background="@drawable/plugin_uexpdfreader_button"
+                android:contentDescription="高亮"
+                android:onClick="OnHighlightButtonClick"
+                android:src="@drawable/plugin_uexpdfreader_ic_highlight" />
+
+            <ImageButton
+                android:id="@+id/underlineButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/strikeOutButton"
+                android:background="@drawable/plugin_uexpdfreader_button"
+                android:contentDescription="下划线"
+                android:onClick="OnUnderlineButtonClick"
+                android:src="@drawable/plugin_uexpdfreader_ic_underline" />
+
+            <ImageButton
+                android:id="@+id/strikeOutButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/inkButton"
+                android:background="@drawable/plugin_uexpdfreader_button"
+                android:contentDescription="删除线"
+                android:onClick="OnStrikeOutButtonClick"
+                android:src="@drawable/plugin_uexpdfreader_ic_strike" />
+
+            <ImageButton
+                android:id="@+id/inkButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/plugin_uexpdfreader_button"
+                android:contentDescription="墨迹"
+                android:onClick="OnInkButtonClick"
+                android:src="@drawable/plugin_uexpdfreader_ic_pen" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/topBar3Delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/plugin_uexpdfreader_toolbar" >
+
+            <ImageButton
+                android:id="@+id/cancelDeleteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/plugin_uexpdfreader_button"
+                android:contentDescription="@string/cancel"
+                android:onClick="OnCancelDeleteButtonClick"
+                android:src="@drawable/plugin_uexpdfreader_ic_cancel" />
+
+            <TextView
+                android:id="@+id/deleteLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/deleteButton"
+                android:layout_toRightOf="@+id/cancelDeleteButton"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/delete"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/deleteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/plugin_uexpdfreader_button"
+                android:contentDescription="@string/delete"
+                android:onClick="OnDeleteButtonClick"
+                android:src="@drawable/plugin_uexpdfreader_ic_trash" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/topBar4More"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/plugin_uexpdfreader_toolbar" >
+
+            <ImageButton
+                android:id="@+id/cancelMoreButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/plugin_uexpdfreader_button"
+                android:contentDescription="@string/cancel"
+                android:onClick="OnCancelMoreButtonClick"
+                android:src="@drawable/plugin_uexpdfreader_ic_cancel" />
+
+            <ImageButton
+                android:id="@+id/proofButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/printButton"
+                android:background="@drawable/plugin_uexpdfreader_button"
+                android:contentDescription="Proof"
+                android:onClick="OnProofButtonClick"
+                android:src="@drawable/plugin_uexpdfreader_ic_proof" />
+
+            <ImageButton
+                android:id="@+id/printButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/copyTextButton"
+                android:background="@drawable/plugin_uexpdfreader_button"
+                android:contentDescription="打印"
+                android:onClick="OnPrintButtonClick"
+                android:src="@drawable/plugin_uexpdfreader_ic_print" />
+
+            <ImageButton
+                android:id="@+id/copyTextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignWithParentIfMissing="true"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/editAnnotButton"
+                android:background="@drawable/plugin_uexpdfreader_button"
+                android:contentDescription="将文本复制到剪贴板"
+                android:onClick="OnCopyTextButtonClick"
+                android:src="@drawable/plugin_uexpdfreader_ic_clipboard" />
+
+            <ImageButton
+                android:id="@+id/editAnnotButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/plugin_uexpdfreader_button"
+                android:contentDescription="编辑批注"
+                android:onClick="OnEditAnnotButtonClick"
+                android:src="@drawable/plugin_uexpdfreader_ic_annotation" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/topBar5Accept"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/plugin_uexpdfreader_toolbar" >
+
+            <ImageButton
+                android:id="@+id/cancelAcceptButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/plugin_uexpdfreader_button"
+                android:contentDescription="@string/cancel"
+                android:onClick="OnCancelAcceptButtonClick"
+                android:src="@drawable/plugin_uexpdfreader_ic_cancel" />
+
+            <TextView
+                android:id="@+id/annotType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/acceptButton"
+                android:layout_toRightOf="@+id/cancelAcceptButton"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/acceptButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/plugin_uexpdfreader_button"
+                android:contentDescription="接受"
+                android:onClick="OnAcceptButtonClick"
+                android:src="@drawable/plugin_uexpdfreader_ic_check" />
+        </RelativeLayout>
+    </ViewAnimator>
+
+    <RelativeLayout
+        android:id="@+id/lowerButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" >
+
+        <SeekBar
+            android:id="@+id/pageSlider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="0dp"
+            android:background="@color/plugin_uexpdfreader_toolbar"
+            android:paddingBottom="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="12dp"
+            android:progressDrawable="@drawable/plugin_uexpdfreader_seek_progress"
+            android:thumb="@drawable/plugin_uexpdfreader_seek_thumb" />
+
+        <TextView
+            android:id="@+id/pageNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/pageSlider"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/plugin_uexpdfreader_page_num"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#FFFFFF" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/pageSlider"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/plugin_uexpdfreader_page_num"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF" />
+
+</RelativeLayout>

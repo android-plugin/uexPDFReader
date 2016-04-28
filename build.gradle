@@ -1,17 +1,15 @@
-apply plugin: 'android'
+apply plugin: 'com.android.application'
 
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
-    compile files('libs/jpush-sdk-release1.7.3.jar')
-    compile files('libs/AppCanEngine.jar')
 }
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "23.0.0"
-    defaultConfig {
-        // 应用的包名
-        applicationId "org.zywx.wbpalmstar.widgetone.uexJPush"
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
     }
     sourceSets {
         main {
