@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	 
+	<!-- uexPDFReader -->
+	<color name="plugin_uexpdfreader_toolbar">#C0000000</color>
+	<color name="plugin_uexpdfreader_button_pressed">#FF2572AC</color>
+	<color name="plugin_uexpdfreader_button_normal">#00000000</color>
+	<color name="plugin_uexpdfreader_seek_progress">#FFFFFF</color>
+	<color name="plugin_uexpdfreader_seek_thumb">#2572AC</color>
+	<color name="plugin_uexpdfreader_page_indicator">#C0202020</color>
+	<color name="plugin_uexpdfreader_text_normal">#FFFFFF</color>
+	<color name="plugin_uexpdfreader_text_pressed">#FFFFFF</color>
+	<color name="plugin_uexpdfreader_text_border_normal">#000000</color>
+	<color name="plugin_uexpdfreader_text_border_pressed">#2572AC</color>
+	<color name="plugin_uexpdfreader_text_border_focused">#000000</color>
+	<color name="plugin_uexpdfreader_busy_indicator">#C0202020</color>
+	
+	
+</resources>

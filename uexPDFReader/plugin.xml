@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<uexplugins>     
+<uexplugins>
     <plugin
-        className="org.zywx.wbpalmstar.plugin.uexpdf.EUExPdf"
-        uexName="uexPDFReader" version="3.0" build="0">
-        <method name="openPDFReader"/>       	 
+        className="org.zywx.wbpalmstar.plugin.uexpdf.EUExPDFReader"
+        uexName="uexPDFReader" >
+        <method name="openPDFReader"/>
+       	<method name="close"/> 
     </plugin>
 </uexplugins>

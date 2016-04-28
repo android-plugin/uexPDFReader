@@ -1,36 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <uexplugins>
-    <!-- plugin test -->
-	<plugin
-        className="com.myplugin.UexTestObject" uexName="uexDemo" >
-        <method name="test_startActivityForResult" />
-        <method name="test_vibrator" />
-        <method name="test_showInputDialog" />
-        <method name="test_addMyViewToWindow" />
-        <method name="test_removeMyViewFromWindow" />
-    </plugin>
-    <!-- plugin baiduMap -->
     <plugin
-        className="org.zywx.wbpalmstar.plugin.uexbaidumap.EUExBaiduMap"
-        uexName="uexBaiduMap" >
-        <method name="open" />
-        <method name="addMark" />
-        <method name="clearMarks" />
-        <method name="getCurrentLocation" />
-        <method name="hide" />
-        <method name="show" />
-        <method name="setCenter" />
-        <method name="setZoomLevel" />
-        <method name="setTrackBeginImage" />
-        <method name="setTrackEndImage" />
-        <method name="setTrackColor" />
-        <method name="addOneTrack" />
-        <method name="clearAllTrack" />
-    </plugin>
-    
-    <plugin
-        className="org.zywx.wbpalmstar.plugin.uexpdf.EUExPdf"
-        uexName="uexPDFReader">
+        className="org.zywx.wbpalmstar.plugin.uexpdf.EUExPDFReader"
+        uexName="uexPDFReader" >
         <method name="openPDFReader"/>
        	<method name="close"/> 
     </plugin>
