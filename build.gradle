@@ -55,6 +55,13 @@ android {
         debug.setRoot('build-types/debug')
         release.setRoot('build-types/release')
     }
+
+    defaultConfig {
+        // 应用的包名
+        applicationId "org.zywx.wbpalmstar.widgetone.uexPDFReader"
+        minSdkVersion 14
+        multiDexEnabled true
+    }
 }
 
 apply from: "https://raw.githubusercontent.com/android-plugin/gradle-plugin/master/buildPlugin.gradle"

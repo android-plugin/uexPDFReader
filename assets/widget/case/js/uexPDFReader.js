@@ -3,12 +3,25 @@ if(UNIT_TEST){
         "open" : function(){
             var file = "res://PDFDocument.pdf"
             uexPDFReader.openPDFReader(file);
-            UNIT_TEST.assertTrue(true);
-        },
-        "close" : function(){
-            uexPDFReader.close();
-            UNIT_TEST.assertTrue(true);
+
+            setTimeout(function () {
+                uexPDFReader.close();
+                UNIT_TEST.assertTrue(true);
+            },2000);
+       },
+        "openView":function () {
+            var file = "res://PDFDocument.pdf"
+            uexPDFReader.openView({
+                width:-1,
+                height:-1,
+                path:file
+            });
+            setTimeout(function () {
+                uexPDFReader.closeView();
+                UNIT_TEST.assertTrue(true);
+            },2000);
         }
-    }
+
+    };
     UNIT_TEST.addCase("pdfReader",uexPDFReaderCase);
 }

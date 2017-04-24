@@ -1,18 +1,22 @@
 package org.zywx.wbpalmstar.plugin.uexpdf;
 
-import java.io.File;
-
-import org.zywx.wbpalmstar.engine.EBrowserView;
-import org.zywx.wbpalmstar.engine.universalex.EUExBase;
-import org.zywx.wbpalmstar.plugin.uexpdf.util.MyLog;
-import org.zywx.wbpalmstar.plugin.uexpdf.util.FileUtil;
-
-import com.artifex.mupdfdemo.MuPDFActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.content.LocalBroadcastManager;
+import android.widget.RelativeLayout;
+
+import com.artifex.mupdfdemo.MuPDFActivity;
+
+import org.zywx.wbpalmstar.base.BUtility;
+import org.zywx.wbpalmstar.engine.DataHelper;
+import org.zywx.wbpalmstar.engine.EBrowserView;
+import org.zywx.wbpalmstar.engine.universalex.EUExBase;
+import org.zywx.wbpalmstar.plugin.uexpdf.util.FileUtil;
+import org.zywx.wbpalmstar.plugin.uexpdf.util.MyLog;
+import org.zywx.wbpalmstar.plugin.uexpdf.vo.OpenVO;
+
+import java.io.File;
 
 /**
  * uexPDFReader
@@ -23,6 +27,8 @@ import android.support.v4.content.LocalBroadcastManager;
  * @version createTime:2016年4月20日 上午11:11:16
  */
 public class EUExPDFReader extends EUExBase {
+
+    private PDFView mPDFView;
 
 	public EUExPDFReader(Context arg0, EBrowserView arg1) {
 		super(arg0, arg1);
@@ -63,6 +69,28 @@ public class EUExPDFReader extends EUExBase {
 		intent.setData(uri);
 		startActivityForResult(intent, Constant.REQUEST_CODE_PDF_PREVIEW_ACTIVITY);
 	}
+
+    public void openView(String[] params){
+        OpenVO openVO= DataHelper.gson.fromJson(params[0],OpenVO.class);
+        openVO.path= BUtility.getRealPathWithCopyRes(mBrwView,openVO.path);
+        if (mPDFView==null){
+            mPDFView=new PDFView(mContext,openVO.path);
+        }
+
+        RelativeLayout.LayoutParams lp=new RelativeLayout.LayoutParams(openVO.width,openVO.height);
+        lp.topMargin=openVO.y;
+        lp.leftMargin=openVO.x;
+        addViewToCurrentWindow(mPDFView,lp);
+
+    }
+
+    public void closeView(String[] params){
+        if (mPDFView!=null){
+            mPDFView.close();
+            removeViewFromCurrentWindow(mPDFView);
+            mPDFView=null;
+        }
+    }
 
 	/**
 	 * 关闭
