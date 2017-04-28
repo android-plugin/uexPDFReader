@@ -1,16 +1,8 @@
 ﻿﻿<?xml version="1.0" encoding="utf-8"?>
 <uexplugins>
     <plugin
-        uexName="uexPDFReader" version="4.0.6" build="6">
-        <info>6: 添加View接口</info>
-        <build>5: 4.0插件</build>
-        <build>4:由于一些特殊字体的pdf无法打开，基于mupdf重写uexPDFReader插件
-              4.1:兼容一些特殊字体的pdf
-              4.2:优化了方法数,使插件更轻量级;方法数1016
-              4.3:用本地广播实现close方法</build>
-        <build>3:去掉插件中的ActivityGroup,配合引擎升级</build>
-        <build>2:修复打包冲突的问题</build>
-        <build>1:修复路径不存在时崩溃问题</build>
-        <build>0:PDF阅读器功能插件</build>
+        uexName="uexPDFReader" version="4.0.1" build="1">
+        <info>1: 添加View接口</info>
+        <build>0: 4.0插件</build>
     </plugin>
 </uexplugins>
