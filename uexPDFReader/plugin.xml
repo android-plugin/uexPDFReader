@@ -4,6 +4,9 @@
         className="org.zywx.wbpalmstar.plugin.uexpdf.EUExPDFReader"
         uexName="uexPDFReader" >
         <method name="openPDFReader"/>
-       	<method name="close"/> 
+       	<method name="close"/>
+        <method name="openView"/>
+        <method name="closeView"/>
+
     </plugin>
 </uexplugins>
