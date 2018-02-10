@@ -17,11 +17,13 @@ public class PDFView extends MuPDFReaderView{
     private String mFilePath;
     private Context mContext;
     private MuPDFPageAdapter mPDFPageAdapter;
+    private PDFViewCallback mCallback;
 
-    public PDFView(Context context,String filePath) {
+    public PDFView(Context context,String filePath, PDFViewCallback callback) {
         super(context);
         mContext=context;
         mFilePath=filePath;
+        mCallback = callback;
         init();
     }
 
@@ -32,15 +34,19 @@ public class PDFView extends MuPDFReaderView{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        mPDFPageAdapter=new MuPDFPageAdapter(mContext, new FilePicker.FilePickerSupport() {
-            @Override
-            public void performPickFor(FilePicker picker) {
+        if (mCore != null){
+            mPDFPageAdapter=new MuPDFPageAdapter(mContext, new FilePicker.FilePickerSupport() {
+                @Override
+                public void performPickFor(FilePicker picker) {
 
-            }
-        },mCore);
+                }
+            },mCore);
 
-        setAdapter(mPDFPageAdapter);
-
+            setAdapter(mPDFPageAdapter);
+            mCallback.onStatus(true);
+        }else{
+            mCallback.onStatus(false);
+        }
     }
 
 
@@ -51,6 +57,9 @@ public class PDFView extends MuPDFReaderView{
         }
     }
 
+    public interface PDFViewCallback{
+        public void onStatus(boolean isSuccess);
+    }
 
 
 }

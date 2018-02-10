@@ -43,6 +43,7 @@ import java.util.concurrent.Executor;
 
 import org.zywx.wbpalmstar.engine.universalex.EUExUtil;
 import org.zywx.wbpalmstar.plugin.uexpdf.CloseActivityReceiver;
+import org.zywx.wbpalmstar.plugin.uexpdf.Constant;
 import org.zywx.wbpalmstar.plugin.uexpdf.util.LocalBroadcastUtil;
 
 class ThreadPerTaskExecutor implements Executor {
@@ -246,6 +247,13 @@ public class MuPDFActivity extends Activity implements FilePicker.FilePickerSupp
 		}
 	}
 
+	private void finishWithSuccessStatus(boolean isSuccess){
+		Intent intent = new Intent();
+		intent.putExtra("isSuccess", isSuccess);
+		setResult(Constant.REQUEST_CODE_PDF_PREVIEW_ACTIVITY, intent);
+		finish();
+	}
+
 	private MuPDFCore openFile(String path) {
 		int lastSlashPos = path.lastIndexOf('/');
 		mFileName = new String(lastSlashPos == -1 ? path : path.substring(lastSlashPos + 1));
@@ -355,7 +363,7 @@ public class MuPDFActivity extends Activity implements FilePicker.FilePickerSupp
 						alert.setButton(AlertDialog.BUTTON_POSITIVE, EUExUtil.getString("plugin_uexpdfreader_dismiss"),
 								new DialogInterface.OnClickListener() {
 									public void onClick(DialogInterface dialog, int which) {
-										finish();
+										finishWithSuccessStatus(false);
 									}
 								});
 						alert.show();
@@ -387,14 +395,14 @@ public class MuPDFActivity extends Activity implements FilePicker.FilePickerSupp
 			alert.setButton(AlertDialog.BUTTON_POSITIVE, EUExUtil.getString("plugin_uexpdfreader_dismiss"),
 					new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
-							finish();
+							finishWithSuccessStatus(false);
 						}
 					});
 			alert.setOnCancelListener(new OnCancelListener() {
 
 				@Override
 				public void onCancel(DialogInterface dialog) {
-					finish();
+					finishWithSuccessStatus(false);
 				}
 			});
 			alert.show();
@@ -458,7 +466,7 @@ public class MuPDFActivity extends Activity implements FilePicker.FilePickerSupp
 				new DialogInterface.OnClickListener() {
 
 					public void onClick(DialogInterface dialog, int which) {
-						finish();
+						finishWithSuccessStatus(false);
 					}
 				});
 		alert.show();
@@ -1430,7 +1438,7 @@ public class MuPDFActivity extends Activity implements FilePicker.FilePickerSupp
 					if (which == AlertDialog.BUTTON_POSITIVE)
 						core.save();
 
-					finish();
+					finishWithSuccessStatus(true);
 				}
 			};
 			AlertDialog alert = mAlertBuilder.create();
@@ -1440,7 +1448,7 @@ public class MuPDFActivity extends Activity implements FilePicker.FilePickerSupp
 			alert.setButton(AlertDialog.BUTTON_NEGATIVE, EUExUtil.getString("plugin_uexpdfreader_no"), listener);
 			alert.show();
 		} else {
-			super.onBackPressed();
+			finishWithSuccessStatus(false);
 		}
 	}
 

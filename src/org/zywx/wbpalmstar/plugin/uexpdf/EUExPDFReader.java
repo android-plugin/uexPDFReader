@@ -12,6 +12,7 @@ import org.zywx.wbpalmstar.base.BUtility;
 import org.zywx.wbpalmstar.engine.DataHelper;
 import org.zywx.wbpalmstar.engine.EBrowserView;
 import org.zywx.wbpalmstar.engine.universalex.EUExBase;
+import org.zywx.wbpalmstar.engine.universalex.EUExCallback;
 import org.zywx.wbpalmstar.plugin.uexpdf.util.FileUtil;
 import org.zywx.wbpalmstar.plugin.uexpdf.util.MyLog;
 import org.zywx.wbpalmstar.plugin.uexpdf.vo.OpenVO;
@@ -29,6 +30,10 @@ import java.io.File;
 public class EUExPDFReader extends EUExBase {
 
     private PDFView mPDFView;
+
+    private int mOpenPDFReaderCallbackId = -1;
+
+    private int mOpenViewCallbackId = -1;
 
 	public EUExPDFReader(Context arg0, EBrowserView arg1) {
 		super(arg0, arg1);
@@ -52,6 +57,15 @@ public class EUExPDFReader extends EUExBase {
 			MyLog.getLog().i("params[0].isEmpty()");
 			return;
 		}
+		//处理回调
+		if (params.length > 1) {
+			try {
+				mOpenPDFReaderCallbackId = Integer.valueOf(params[1]);
+			} catch (Exception ignored) {
+			}
+		} else {
+			mOpenPDFReaderCallbackId = -1;
+		}
 
 		String path = params[0];
 		String absPath = FileUtil.getAbsPath(path, mBrwView);
@@ -71,16 +85,32 @@ public class EUExPDFReader extends EUExBase {
 	}
 
     public void openView(String[] params){
-        OpenVO openVO= DataHelper.gson.fromJson(params[0],OpenVO.class);
+		//处理回调
+		if (params.length > 1) {
+			try {
+				mOpenViewCallbackId = Integer.valueOf(params[1]);
+			} catch (Exception ignored) {
+			}
+		} else {
+			mOpenViewCallbackId = -1;
+		}
+        final OpenVO openVO= DataHelper.gson.fromJson(params[0],OpenVO.class);
         openVO.path= BUtility.getRealPathWithCopyRes(mBrwView,openVO.path);
         if (mPDFView==null){
-            mPDFView=new PDFView(mContext,openVO.path);
+            mPDFView=new PDFView(mContext, openVO.path, new PDFView.PDFViewCallback() {
+				@Override
+				public void onStatus(boolean isSuccess) {
+					//TODO 还未添加回调，需要时与iOS一起增加
+					if (isSuccess){
+						RelativeLayout.LayoutParams lp=new RelativeLayout.LayoutParams(openVO.width,openVO.height);
+						lp.topMargin=openVO.y;
+						lp.leftMargin=openVO.x;
+						addViewToCurrentWindow(mPDFView,lp);
+					}
+					cbOpenViewToJS(isSuccess);
+				}
+			});
         }
-
-        RelativeLayout.LayoutParams lp=new RelativeLayout.LayoutParams(openVO.width,openVO.height);
-        lp.topMargin=openVO.y;
-        lp.leftMargin=openVO.x;
-        addViewToCurrentWindow(mPDFView,lp);
 
     }
 
@@ -107,6 +137,38 @@ public class EUExPDFReader extends EUExBase {
 		localBroadcastManager.sendBroadcast(intent);
 
 		MyLog.getLog().i("end");
+	}
+
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == Constant.REQUEST_CODE_PDF_PREVIEW_ACTIVITY){
+			if (data != null){
+				//默认是成功的，因为可能会有没有照顾到的其他途径关闭了Activity未放入成功状态
+				boolean isSuccess = true;
+				try {
+					isSuccess = data.getBooleanExtra("isSuccess", true);
+				} catch (Exception ignore) {
+				}
+				cbOpenToJS(isSuccess);
+			}else{
+				cbOpenToJS(true);
+			}
+		}
+	}
+
+	private void cbOpenToJS(boolean isSuccess){
+		if (mOpenPDFReaderCallbackId != -1) {
+			callbackToJs(mOpenPDFReaderCallbackId, false, isSuccess ? EUExCallback.F_C_SUCCESS : EUExCallback.F_C_FAILED);
+		}else{
+			MyLog.getLog().i("cbOpenToJS: isSuccess? " + isSuccess + ", but no cbFunction to handle!!!");
+		}
+	}
+
+	private void cbOpenViewToJS(boolean isSuccess){
+		if (mOpenViewCallbackId != -1) {
+			callbackToJs(mOpenViewCallbackId, false, isSuccess ? EUExCallback.F_C_SUCCESS : EUExCallback.F_C_FAILED);
+		}else{
+			MyLog.getLog().i("cbOpenViewToJS: isSuccess? " + isSuccess + ", but no cbFunction to handle!!!");
+		}
 	}
 
 	@Override
