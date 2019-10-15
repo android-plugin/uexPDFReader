@@ -36,14 +36,16 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.ViewAnimator;
 
-import java.io.InputStream;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.concurrent.Executor;
-
 import org.zywx.wbpalmstar.engine.universalex.EUExUtil;
 import org.zywx.wbpalmstar.plugin.uexpdf.CloseActivityReceiver;
 import org.zywx.wbpalmstar.plugin.uexpdf.util.LocalBroadcastUtil;
+import org.zywx.wbpalmstar.plugin.uexpdf.util.WaterMarkBg;
+
+import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.concurrent.Executor;
 
 class ThreadPerTaskExecutor implements Executor {
 	public void execute(Runnable r) {
@@ -92,6 +94,7 @@ public class MuPDFActivity extends Activity implements FilePicker.FilePickerSupp
 	private SearchTask mSearchTask;
 	private ImageButton mProofButton;
 	private ImageButton mSepsButton;
+	private TextView water_tv;
 	private AlertDialog.Builder mAlertBuilder;
 	private boolean mLinkHighlight = false;
 	private final Handler mHandler = new Handler();
@@ -102,7 +105,7 @@ public class MuPDFActivity extends Activity implements FilePicker.FilePickerSupp
 	private FilePicker mFilePicker;
 	private String mProofFile;
 	private boolean mSepEnabled[][];
-
+	private ArrayList<String> warterText=new ArrayList<>();
 	static private AlertDialog.Builder gAlertBuilder;
 
 	static public AlertDialog.Builder getAlertBuilder() {
@@ -467,8 +470,9 @@ public class MuPDFActivity extends Activity implements FilePicker.FilePickerSupp
 	public void createUI(Bundle savedInstanceState) {
 		if (core == null)
 			return;
+		warterText = getIntent().getStringArrayListExtra("warterText");
 
-		// Now create the UI.
+        // Now create the UI.
 		// First create the document view
 		mDocView = new MuPDFReaderView(this) {
 			@Override
@@ -982,6 +986,7 @@ public class MuPDFActivity extends Activity implements FilePicker.FilePickerSupp
 	@SuppressWarnings("static-access")
 	private void makeButtonsView() {
 		mButtonsView = getLayoutInflater().inflate(EUExUtil.getResLayoutID("plugin_uexpdfreader_buttons"), null);
+		water_tv=(TextView) mButtonsView.findViewById(EUExUtil.getResIdID("water_tv"));
 		mFilenameView = (TextView) mButtonsView.findViewById(EUExUtil.getResIdID("docNameText"));
 		mPageSlider = (SeekBar) mButtonsView.findViewById(EUExUtil.getResIdID("pageSlider"));
 		mPageNumberView = (TextView) mButtonsView.findViewById(EUExUtil.getResIdID("pageNumber"));
@@ -1002,6 +1007,9 @@ public class MuPDFActivity extends Activity implements FilePicker.FilePickerSupp
 		mTopBarSwitcher.setVisibility(View.INVISIBLE);
 		mPageNumberView.setVisibility(View.INVISIBLE);
 		mInfoView.setVisibility(View.INVISIBLE);
+		if(!warterText.isEmpty()) {
+            water_tv.setBackground(new WaterMarkBg(this,warterText,-30,18));
+		}
 
 		mPageSlider.setVisibility(View.INVISIBLE);
 		if (!core.gprfSupported()) {

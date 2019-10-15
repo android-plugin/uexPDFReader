@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <uexplugins>
     <plugin
-        uexName="uexPDFReader" version="4.0.1" build="1">
-        <info>1: 添加View接口</info>
+        uexName="uexPDFReader" version="4.4.2" build="1">
+        <info>2: 更新So文件添加其他架构so</info>
+        <build>1: 添加View接口</build>
         <build>0: 4.0插件</build>
     </plugin>
 </uexplugins>
