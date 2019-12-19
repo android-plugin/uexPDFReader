@@ -367,6 +367,11 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" >
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/water_tv"
+            />
         <SeekBar
             android:id="@+id/pageSlider"
             android:layout_width="match_parent"

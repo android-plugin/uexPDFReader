@@ -18,6 +18,7 @@ import org.zywx.wbpalmstar.plugin.uexpdf.util.MyLog;
 import org.zywx.wbpalmstar.plugin.uexpdf.vo.OpenVO;
 
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * uexPDFReader
@@ -47,12 +48,12 @@ public class EUExPDFReader extends EUExBase {
 	public void openPDFReader(String[] params) {
 
 		MyLog.getLog().i("start");
-
+		
 		if (params.length < 1) {
 			MyLog.getLog().i("params.length < 1");
 			return;
 		}
-
+		
 		if (params[0].isEmpty()) {
 			MyLog.getLog().i("params[0].isEmpty()");
 			return;
@@ -68,6 +69,11 @@ public class EUExPDFReader extends EUExBase {
 		}
 
 		String path = params[0];
+		ArrayList<String> warterText=new ArrayList<>();
+		if(params.length==2) {
+		    warterText.add(params[1]);
+		}
+
 		String absPath = FileUtil.getAbsPath(path, mBrwView);
 		String fileName = FileUtil.makeFile(mContext, absPath);
 		if (fileName == null) {
@@ -81,6 +87,7 @@ public class EUExPDFReader extends EUExBase {
 		Intent intent = new Intent(mContext, MuPDFActivity.class);
 		intent.setAction(Intent.ACTION_VIEW);
 		intent.setData(uri);
+		intent.putStringArrayListExtra("warterText",warterText);
 		startActivityForResult(intent, Constant.REQUEST_CODE_PDF_PREVIEW_ACTIVITY);
 	}
 

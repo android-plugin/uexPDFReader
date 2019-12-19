@@ -18,14 +18,14 @@
 		var filePath = "file:///sdcard/PDFDocument.pdf";
         var resPath = "res://sample.pdf";
         var resPath2 = "res://PDFDocument.pdf";
-		uexPDFReader.openPDFReader(resPath2, function(isSuccess){
+		// 参数列表：PDF路径，水印，操作回调
+		uexPDFReader.openPDFReader(resPath2, "AppCan", function(isSuccess){
 			alert("isOpenSuccess? "+ isSuccess);
 		});
 	}
 	
 </script>
 </head>
-
 <body>
 	<div class="tit">uexPDFReader</div>
 	<div class="conbor">

@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <uexplugins>
     <plugin
-        uexName="uexPDFReader" version="4.0.2" build="2018021002">
-        <info>2: openPDFReader和openView增加function回调获取打开状态</info>
+        uexName="uexPDFReader" version="4.4.3" build="2019121901">
+        <info>3: openPDFReader和openView增加function回调获取打开状态</info>
+        <build>2: 适配4.4引擎，更新So文件添加其他架构so</build>
         <build>1: 添加View接口</build>
         <build>0: 4.0插件</build>
     </plugin>
